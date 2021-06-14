@@ -29,6 +29,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include "moonlander.h"
 #include "i2c_master.h"
 #include "debounce.h"
+#ifdef POINTING_DEVICE_ENABLE
+#    include "pointing_device.h"
+#endif
 
 /*
 #define MATRIX_ROW_PINS { B10, B11, B12, B13, B14, B15 } outputs
@@ -181,6 +184,9 @@ uint8_t matrix_scan(void) {
                     print("left side attached\n");
 #ifdef RGB_MATRIX_ENABLE
                     rgb_matrix_init();
+#endif
+#ifdef POINTING_DEVICE_ENABLE
+                    pointing_device_init();
 #endif
                 }
             }
